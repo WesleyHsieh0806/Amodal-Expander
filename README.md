@@ -52,7 +52,8 @@ Check the [Jupyter demo]() and implementation details ([link 1](), [link 2]()).
   <a href="https://tao-amodal.github.io/"><img width="95%" alt="TAO-Amodal" src="https://github.com/WesleyHsieh0806/Amodal-Expander/assets/55971907/c08286bf-3e8a-464e-b5e3-dd23f389962f"></a>
    </div>
 
-
+## Acknowledgement
+This repository is built upon [Global Tracking Transformer](https://github.com/xingyizhou/GTR) and [Detectron2](https://github.com/facebookresearch/detectron2).
 
 ## Citations
 ``` bash
