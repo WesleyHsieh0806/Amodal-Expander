@@ -66,7 +66,7 @@ python train_net.py --config-file /path/to/config/name.yaml --eval-only MODEL.WE
 
 ## TAO-Amodal
 ### Training
-1. Download [pre-trained GTR](https://drive.google.com/file/d/1TqkLpFZvOMY5HTTaAWz25RxtLHdzQ-CD/view?usp=sharing) and place the weight under `$Amodal-Expander/models/`.
+1. Download [pre-trained GTR](https://drive.google.com/file/d/1TqkLpFZvOMY5HTTaAWz25RxtLHdzQ-CD/view?usp=sharing) and place the model weight under `$Amodal-Expander/models/`.
 
 2. Training:
 
