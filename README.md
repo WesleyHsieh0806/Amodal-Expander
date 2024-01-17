@@ -29,6 +29,9 @@
       <a href="#running-training-and-inference">Training and Inference</a>
     </li>
     <li>
+      <a href="#bar_chart-evaluation">Evaluation</a>
+    </li>
+    <li>
       <a href="#rabbit2-pastenocclude">PasteNOcclude</a>
     </li>
     <li>
@@ -47,6 +50,8 @@ See [installation instructions](./docs/INSTALL.md).
 ## :running: Training and Inference
 First [prepare datasets](./datasets/README.md) and check our [MODEL ZOO](./docs/MODEL_ZOO.md) for training/inference instructions.
 
+## :bar_chart: Evaluation
+After obtaining the prediction JSON `lvis_instances_results.json` through the above inference pipeline. You can evaluate the tracker results using our [evaluation toolkit](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
 
 ## :rabbit2: PasteNOcclude
 PasteNOcclude serves as a data augmentation technique to automatically generate more occlusion scenarios. 

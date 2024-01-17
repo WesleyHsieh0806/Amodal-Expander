@@ -5,7 +5,7 @@ Our Amodal-Expander augments the modal tracker [GTR](https://github.com/xingyizh
 ## Download Datasets 
 1. Download [TAO-Amodal](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal).
 
-2. Download [Segment Object](). 
+2. Download [Segment Object](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal-Segment-Object-Large). 
     > This dataset, collected from [LVIS](https://www.lvisdataset.org/) and [COCO](https://cocodataset.org/#home), is used in our [PasteNOcclude](https://github.com/WesleyHsieh0806/Amodal-Expander?tab=readme-ov-file#rabbit2-pastenocclude) augmentation technique.
 
 
@@ -20,20 +20,83 @@ Our Amodal-Expander augments the modal tracker [GTR](https://github.com/xingyizh
         coco/
     ```
 
-4. Download [TAO](https://taodataset.org/) dataset (Optional)
+<details><summary>Download TAO, LVIS and COCO (Optional)</summary>
+
+* Download [TAO](https://taodataset.org/) dataset (Optional)
     TAO-Amodal shares the same sets of frames with TAO, so we only need to download the [annotations](https://github.com/TAO-Dataset/tao/blob/master/docs/download.md).
 
-5. Download [LVIS](https://www.lvisdataset.org/) and [COCO](https://cocodataset.org/#home) (Optional)
+* Download [LVIS](https://www.lvisdataset.org/) and [COCO](https://cocodataset.org/#home) (Optional)
     If you want to reproduce GTR or generate our Segment-Object dataset
 
+</details>
 
-Now, please follow the instructions below to pre-process individual datasets.
+</br>
+Please follow the instructions below to pre-process individual datasets.
+  <ul>
+    <li>
+      <a href="#tao-amodal">TAO-Amodal</a>
+    </li>
+    <li>
+      <a href="#customized-dataset">Customized Dataset</a>
+    </li>
+    <li>
+      <a href="#coco-and-lvis">COCO and LVIS (Optional)</a>
+    </li>
+    <ul>
+        <li>
+        <a href="#collection-details-of-segment-object">Collection Details of Segment-Object</a>
+        </li>
+    </ul>
+    <li>
+      <a href="#tao">TAO (Optional)</a>
+    </li>
+  </ul>
 
 ## TAO-Amodal
+TAO-Amodal **does not** need to be further preprocessed as all the files are already provided in our dataset. Read the paragraphs below to check useful scripts to customize dataset formats. 
 
-Register TAO-Amodal into the DatasetCatalog by using tools gtr/data/datasets/tao_amodal.py
+The downloaded dataset will be structured like:
+```
+   TAO-Amodal
+    ├── frames
+    │    └── train
+    │       ├── ArgoVerse
+    │       ├── BDD
+    │       ├── Charades
+    │       ├── HACS
+    │       ├── LaSOT
+    │       └── YFCC100M
+    ├── amodal_annotations
+    │    ├── train/validation/test.json
+    │    ├── train_lvis_v1.json
+    │    └── validation_lvis_v1.json
+    ├── example_output
+    │    └── prediction.json
+    ├── BURST_annotations
+    │    ├── train
+    │         └── train_visibility.json
+    │    ...
 
-### COCO and LVIS (Optional)
+```
+
+We used `train_lvis_v1.json` to train the Amodal Expander by viewing each image frame as independent sequences. `validation_lvis_v1.json` is used for [evaluation](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
+
+`train_lvis_v1.json` was obtained through:
+```bash
+python tools/create_tao_amodal_train_v1.py datasets/tao/amodal_annotations/train.json
+```
+
+`validation_lvis_v1.json` was obtained through:
+```bash
+python tools/create_tao_amodal_v1.py datasets/tao/amodal_annotations/validation.json 
+```
+
+You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md) to create annotation JSON for running trackers at higher fps.
+
+## Customized Dataset
+To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets) and [provided examples](../gtr/data/datasets/).
+
+## COCO and LVIS
 
 Download COCO and LVIS data place them in the following way:
 
@@ -58,26 +121,21 @@ python tools/merge_lvis_coco.py
 
 This creates `datasets/lvis/lvis_v1_train+coco_box.json` or `datasets/lvis/lvis_v1_train+coco_mask.json` (by setting `NO_SEG=False`)
 
-#### Create TAO-Amodal-Segment-Object Dataset from LVIS for PasteAndOcclude Training.
-This is a prerequisite if you want to fine-tune GTR with PasteAndOcclude.
-To use the data augmentation technique, PasteAndOcclude, to fine-tune your model, you need to further prepare a set of segmented objects from `datasets/lvis/lvis_v1_train+coco_mask.json`.
+#### Collection Details of [Segment-Object]((https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal-Segment-Object-Large)).
 
-
-This could be done by running [tools/get_lvis_segmented_set.ipynb](../tools/get_lvis_segmented_set.ipynb).
-You can also directly download the TAO-Amodal-Segment-Object Dataset [here](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal-Segment-Object).
-
-The dataset `Segment-Object` will then be structured like this under `datasets/lvis/Segment-Object`.
+Check [tools/get_lvis_segmented_set.ipynb](../tools/get_lvis_segmented_set.ipynb) to see the dataset collection details.
+After running the above notebook, `Segment-Object-Large` dataset will then be constructed like this under `datasets/lvis/`.
 ```
 lvis/
     lvis_v1_train.json
     lvis_v1_val.json
-    Segment-Object/
+    Segment-Object-Large/
         segment_object.json
         train2017/
 ```
 
 
-### TAO (Optional)
+## TAO
 
 Download the data following the official [instructions](https://github.com/TAO-Dataset/tao/blob/master/docs/download.md) and place them as 
 
@@ -121,6 +179,3 @@ python tools/create_tao_v1.py datasets/tao/annotations/validation.json
 This creates `datasets/tao/annotations/validation_v1.json`.
 
 For TAO test set, we'll convert the LVIS v1 labels back to v0.5 for the server-based test set evaluation.
-
-Since we use detectron2 to load the dataset during training, testing. Remember to run gtr/data/datasets/tao.py to register tao into DatasetCatalog in detectron2
-
