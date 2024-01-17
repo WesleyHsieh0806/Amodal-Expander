@@ -42,7 +42,11 @@
 
 ## :school_satchel: Get Started
 
+See [installation instructions](./docs/INSTALL.md).
+
 ## :running: Training and Inference
+First [prepare datasets](./datasets/README.md) and check our [MODEL ZOO](./docs/MODEL_ZOO.md) for training/inference instructions.
+
 
 ## :rabbit2: PasteNOcclude
 PasteNOcclude serves as a data augmentation technique to automatically generate more occlusion scenarios. 
@@ -54,6 +58,9 @@ Check the [Jupyter demo]() and implementation details ([link 1](), [link 2]()).
 
 ## Acknowledgement
 This repository is built upon [Global Tracking Transformer](https://github.com/xingyizhou/GTR) and [Detectron2](https://github.com/facebookresearch/detectron2).
+
+## LICENSE
+Check [here](https://github.com/xingyizhou/GTR?tab=readme-ov-file#license) for further details.
 
 ## Citations
 ``` bash
