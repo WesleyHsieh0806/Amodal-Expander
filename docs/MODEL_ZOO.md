@@ -98,7 +98,7 @@ python train_net.py \
 
 This creates `inference_tao_amodal_val_v1/lvis_instances_results.json` in the `OUTPUT_DIR`.
 
-#### Inference at Higher FPS
+### Inference at Higher FPS
 You can also run trackers on TAO-Amodal at higher fps by including non-annotated frames into the annotation JSON.
 
 1. Create new annotation JSON
@@ -123,5 +123,5 @@ You can also run trackers on TAO-Amodal at higher fps by including non-annotated
 
 This creates `path/to/5fps/lvis_instances_results_to_1fps.json` in your `OUTPUT_FOLDER`.
 
-#### Evaluation
+### Evaluation
 After running the inference, you can evaluate the tracking results with the generated JSON (`lvis_instances_results.json`). Please refer to our [eval toolkit](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation) for further details.
