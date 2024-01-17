@@ -60,7 +60,9 @@ Please follow the instructions below to pre-process individual datasets.
   </ul>
 
 ## TAO-Amodal
-TAO-Amodal **does not** need to be further preprocessed as all the files are already provided in our dataset. Read the paragraphs below to check useful scripts to customize dataset formats. 
+TAO-Amodal **does not** need to be further preprocessed as all the files are already provided in our dataset. 
+
+If interested, read the paragraphs below to check useful scripts to customize dataset formats. 
 
 The downloaded dataset will be structured like:
 ```
