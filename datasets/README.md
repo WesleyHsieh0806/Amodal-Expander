@@ -94,7 +94,7 @@ python tools/create_tao_amodal_v1.py datasets/tao/amodal_annotations/validation.
 You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md) to create annotation JSON for running trackers at higher fps.
 
 ## Customized Dataset
-To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets) and [provided examples](../gtr/data/datasets/).
+To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). Then, register your dataset following our [provided examples](../gtr/data/datasets/).
 
 ## COCO and LVIS
 
