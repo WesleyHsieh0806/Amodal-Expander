@@ -48,7 +48,9 @@
 See [installation instructions](./docs/INSTALL.md).
 
 ## :running: Training and Inference
-First [prepare datasets](./datasets/README.md) and check our [MODEL ZOO](./docs/MODEL_ZOO.md) for training/inference instructions.
+We augment the SOTA modal tracker [GTR](https://github.com/xingyizhou/GTR) with Amodal Expander by fine-tuning on [TAO-Amodal](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal) dataset.
+
+Please [prepare datasets](./datasets/README.md) and check our [MODEL ZOO](./docs/MODEL_ZOO.md) for training/inference instructions.
 
 ## :bar_chart: Evaluation
 After obtaining the prediction JSON `lvis_instances_results.json` through the above inference pipeline. You can evaluate the tracker results using our [evaluation toolkit](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
