@@ -1,0 +1,77 @@
+_BASE_: "Base-CenterNet2.yaml"
+MODEL:
+  FREEZE_TYPE: ExceptAmodalExpander
+  META_ARCHITECTURE: "GTRRCNN"
+  BACKBONE:
+    NAME: "build_p67_res2net_fpn_backbone"
+  WEIGHTS: "models/GTR_TAO_DR2101.pth"
+  RESNETS:
+    DEPTH: 101
+    WIDTH_PER_GROUP: 26
+    DEFORM_ON_PER_STAGE: [False, False, True, True] # on Res4, Res5
+    DEFORM_MODULATED: True
+  PIXEL_MEAN: [123.675, 116.280, 103.530]
+  PIXEL_STD: [58.395, 57.12, 57.375]
+  CENTERNET:
+    USE_DEFORMABLE: True
+  ROI_BOX_HEAD:
+    USE_SIGMOID_CE: True
+    USE_FED_LOSS: True
+    DELAY_CLS: True
+    BBOX_REG_LOSS_WEIGHT: 1.0
+  ROI_BOX_CASCADE_HEAD:
+    # We use this threshold only during training for Proposal Matcher. 
+    # Matched pairs with IoU >= threshold will be defined as positive samples, while IoU < threshold will be defined as negative samples (False Positive)
+    # https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/matcher.py
+    # https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/roi_heads/cascade_rcnn.py#L95
+    IOUS: [0.8, 0.85, 0.9]
+  ROI_HEADS:
+    IOU_THRESHOLDS: [0.8]
+    IN_FEATURES: ["p3"]
+    NAME: GTRAmodalROIHeads
+    PROPOSAL_APPEND_GT: False
+  ASSO_ON: True
+  ASSO_HEAD:
+    ASSO_THRESH: 0.1
+    ASSO_THRESH_TEST: 0.4
+    ASSO_WEIGHT: 0.0  # Turn Off Association Loss
+    NO_POS_EMB: True
+  AMODAL_EXPANDER:
+    HIDDEN_DIM: 256
+    NUM_LAYER: 2
+    DROPOUT: 0.2
+    CASCADE_SHARE_WEIGHTS: True
+    ONLY_LAST_STAGE: False
+    ZERO_INIT: True
+SOLVER:
+  USE_CUSTOM_SOLVER: True
+  MAX_ITER: 20000
+  CHECKPOINT_PERIOD: 5000
+  LR_SCHEDULER_NAME: "WarmupCosineLR"
+  BASE_LR: 0.01
+  OPTIMIZER: ADAMW
+  IMS_PER_BATCH: 4
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 0.1
+    NORM_TYPE: 2.0
+  BACKBONE_MULTIPLIER: 0.1
+INPUT:
+  SCALE_RANGE: [0.1, 5.0]
+  FORMAT: RGB
+  CUSTOM_AUG: EfficientDetResizeCrop
+  TRAIN_SIZE: 896
+  VIDEO:
+    TRAIN_LEN: 8
+    TEST_LEN: 16
+  NOT_CLAMP_BOX: True
+  USE_MODAL_MATCH: True  # Use TAOAmodalDatasetModalMatchMapper or not.
+VIDEO_INPUT: True
+DATASETS:
+  TRAIN: ("tao_amodal_train_pure_image_modal_match_v1",)
+  TEST: ('tao_amodal_val_v1',)
+DATALOADER:
+  SAMPLER_TRAIN: "TrainingSampler"
+OUTPUT_DIR: "/path/to/output/folder"
+FIND_UNUSED_PARAM: True
