@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     new_track_results = remove_results_on_non_labeled_images(dataset, track_results)
 
-    new_track_result_file = os.path.splitext(args.track_results)[0] + "_30_to_1fps.json" 
+    new_track_result_file = os.path.splitext(args.track_results)[0] + "_to_1fps.json" 
     print("Writing to {}...".format(new_track_result_file))
     with open(new_track_result_file, 'w') as f:
         json.dump(new_track_results, f)
