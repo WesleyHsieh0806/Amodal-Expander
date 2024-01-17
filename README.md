@@ -57,7 +57,7 @@ After obtaining the prediction JSON `lvis_instances_results.json` through the ab
 
 ## :rabbit2: PasteNOcclude
 PasteNOcclude serves as a data augmentation technique to automatically generate more occlusion scenarios. 
-Check the [Jupyter demo]() and implementation details ([link 1](), [link 2]()).
+Check the [Jupyter demo](./gtr/data/transforms/demo.ipynb) and implementation details ([link 1](./gtr/data/tao_amodal_dataset_modal_match_mapper.py#L274), [link 2](./gtr/data/transforms/paste_and_occlude_transform.py), [link 3](./gtr/data/transforms/paste_and_occlude_impl.py)).
 
 <div align="center">
   <a href="https://tao-amodal.github.io/"><img width="95%" alt="TAO-Amodal" src="https://github.com/WesleyHsieh0806/Amodal-Expander/assets/55971907/c08286bf-3e8a-464e-b5e3-dd23f389962f"></a>

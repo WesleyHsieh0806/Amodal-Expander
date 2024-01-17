@@ -270,6 +270,9 @@ class TAOAmodalDatasetModalMatchMapper(DatasetMapper):
             width, height = image.shape[1], image.shape[0]
             aug_input = T.StandardAugInput(image)
 
+            '''
+            * Check the following for the usage of PasteAndOcclude on Videos
+            '''
             # Randomly select new segment objects
             if self.use_paste_and_occlude:
                 self.motion_augmentations[0].randomly_select_segments()
@@ -282,6 +285,8 @@ class TAOAmodalDatasetModalMatchMapper(DatasetMapper):
             # Update the position of segmented object in the last frame.
             if self.use_paste_and_occlude:
                 transforms_ed[0].update_segment_position(width, height) 
+            
+            # PasteAndOcclude on synthetic videos.
             for x in range(num_frames):
                 if num_frames == 1:
                     transforms_list.append(transforms_st)
