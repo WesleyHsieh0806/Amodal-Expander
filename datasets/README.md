@@ -4,10 +4,17 @@ Our Amodal-Expander augments the modal tracker [GTR](https://github.com/xingyizh
 
 ## Download Datasets 
 1. Download [TAO-Amodal](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal).
+    ```bash
+    git lfs install
+    git clone git@hf.co:datasets/chengyenhsieh/TAO-Amodal
+    ```
 
 2. Download [Segment Object](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal-Segment-Object-Large). 
     > This dataset, collected from [LVIS](https://www.lvisdataset.org/) and [COCO](https://cocodataset.org/#home), is used in our [PasteNOcclude](https://github.com/WesleyHsieh0806/Amodal-Expander?tab=readme-ov-file#rabbit2-pastenocclude) augmentation technique.
-
+    ```bash
+    git lfs install
+    git clone git@hf.co:datasets/chengyenhsieh/TAO-Amodal-Segment-Object-Large
+    ```
 
 3. Place or sim-link the downloaded datasets under `$Amodal-Expander/datasets/`. 
     You could refer to [sim-link.sh](./sim-link.sh) to generate symbolic link
