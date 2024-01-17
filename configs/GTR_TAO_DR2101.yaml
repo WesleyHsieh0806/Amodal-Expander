@@ -50,6 +50,7 @@ INPUT:
   VIDEO:
     TRAIN_LEN: 8
     TEST_LEN: 16
+  NOT_CLAMP_BOX: True
 VIDEO_INPUT: True
 DATASETS:
   TRAIN: ("lvis_v1_train+coco_box",)

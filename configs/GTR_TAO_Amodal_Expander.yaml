@@ -24,9 +24,9 @@ MODEL:
     # Matched pairs with IoU >= threshold will be defined as positive samples, while IoU < threshold will be defined as negative samples (False Positive)
     # https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/matcher.py
     # https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/roi_heads/cascade_rcnn.py#L95
-    IOUS: [0.8, 0.85, 0.9]
+    # IOUS: [0.8, 0.85, 0.9]
   ROI_HEADS:
-    IOU_THRESHOLDS: [0.8]
+    # IOU_THRESHOLDS: [0.8]
     IN_FEATURES: ["p3"]
     NAME: GTRAmodalROIHeads
     PROPOSAL_APPEND_GT: False
