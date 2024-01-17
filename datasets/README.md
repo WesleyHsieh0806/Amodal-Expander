@@ -62,9 +62,6 @@ Please follow the instructions below to pre-process individual datasets.
 ## TAO-Amodal
 TAO-Amodal **does not** need to be further preprocessed as all the files are already provided in our dataset. 
 
-If interested, read the paragraphs below to check useful scripts to customize dataset formats. 
-
-The downloaded dataset will be structured like:
 ```
    TAO-Amodal
     ├── frames
@@ -85,28 +82,35 @@ The downloaded dataset will be structured like:
     │    ├── train
     │         └── train_visibility.json
     │    ...
+    
+ ```
 
-```
 
-We used `train_lvis_v1.json` to train the Amodal Expander by viewing each image frame as independent sequences. `validation_lvis_v1.json` is used for [evaluation](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
+- <details>
+    <summary>If interested, read the paragraphs below to check useful scripts to create variations of annotation formats.</summary>
 
-`train_lvis_v1.json` was obtained through:
-```bash
-python tools/create_tao_amodal_train_v1.py datasets/tao/amodal_annotations/train.json
-```
+    We used `train_lvis_v1.json` to train the Amodal Expander by viewing each image frame as independent sequences. `validation_lvis_v1.json` is used for [evaluation](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
+    
+    `train_lvis_v1.json` was obtained through:
+    ```bash
+    python tools/create_tao_amodal_train_v1.py datasets/tao/amodal_annotations/train.json
+    ```
+    
+    `validation_lvis_v1.json` was obtained through:
+    ```bash
+    python tools/create_tao_amodal_v1.py datasets/tao/amodal_annotations/validation.json 
+    ```
+    </detail>
 
-`validation_lvis_v1.json` was obtained through:
-```bash
-python tools/create_tao_amodal_v1.py datasets/tao/amodal_annotations/validation.json 
-```
 
-You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md) to create annotation JSON for running trackers at higher fps.
+
+- You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md#inference-at-higher-fps) to create annotation JSON for running trackers at higher fps.
 
 ## Customized Dataset
-* To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). 
-* Then, create a python script `your_dataset.py` to register your dataset following our [provided examples](../gtr/data/datasets/). 
+1. To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). 
+2. Then, create a python script `your_dataset.py` to register your dataset following our [provided examples](../gtr/data/datasets/). 
 
-* Finally, import the dataset script (such as `your_dataset.py`) in [__init\__.py](./gtr/__init__.py), which enables the dataset to be loaded during training:
+3. Finally, import the dataset script (such as `your_dataset.py`) in [__init\__.py](./gtr/__init__.py), which enables the dataset to be loaded during training:
     ```python
     # Something like this
     from .data.datasets import your_dataset
