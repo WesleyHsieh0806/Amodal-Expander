@@ -9,7 +9,7 @@ Our Amodal-Expander augments the modal tracker [GTR](https://github.com/xingyizh
     > This dataset, collected from [LVIS](https://www.lvisdataset.org/) and [COCO](https://cocodataset.org/#home), is used in our [PasteNOcclude](https://github.com/WesleyHsieh0806/Amodal-Expander?tab=readme-ov-file#rabbit2-pastenocclude) augmentation technique.
 
 
-3. Sim-link the downloaded datasets under `$Amodal-Expander/datasets/`. 
+3. Place or sim-link the downloaded datasets under `$Amodal-Expander/datasets/`. 
     You could refer to [sim-link.sh](./sim-link.sh) to generate symbolic link
     ```
     $Amodal-Expander/datasets/
@@ -94,7 +94,14 @@ python tools/create_tao_amodal_v1.py datasets/tao/amodal_annotations/validation.
 You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md) to create annotation JSON for running trackers at higher fps.
 
 ## Customized Dataset
-To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). Then, register your dataset following our [provided examples](../gtr/data/datasets/).
+* To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). 
+* Then, create a python script `your_dataset.py` to register your dataset following our [provided examples](../gtr/data/datasets/). 
+
+* Finally, import the dataset script (such as `your_dataset.py`) in [__init\__.py](./gtr/__init__.py), which enables the dataset to be loaded during training:
+    ```python
+    # Something like this
+    from .data.datasets import your_dataset
+    ```
 
 ## COCO and LVIS
 
