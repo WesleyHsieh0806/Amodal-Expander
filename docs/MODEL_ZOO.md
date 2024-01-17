@@ -45,6 +45,7 @@ You can use the following command to download all the model weights of Amodal Ex
 git lfs install
 git clone git@hf.co:chengyenhsieh/Amodal-Expander
 ```
+<br>
 
 #### How to Run the Model
 
@@ -63,6 +64,8 @@ python train_net.py --config-file /path/to/config/name.yaml --eval-only MODEL.WE
 
 :warning: Make sure to customize `OUTPUT_DIR` in the config and place all model weights under `$Amodal-Expander/models/`.
 
+<br>
+<br>
 
 ## TAO-Amodal
 ### Training
@@ -83,6 +86,8 @@ python train_net.py --config-file /path/to/config/name.yaml --eval-only MODEL.WE
 
 The training log and model weights will be saved in `OUTPUT_DIR`, specified in the `--config-file`.
 
+<br>
+
 ### Inference
 
 Specify `MODEL.WEIGHTS` and `OUTPUT_DIR`. 
@@ -97,6 +102,8 @@ python train_net.py \
 ```
 
 This creates `inference_tao_amodal_val_v1/lvis_instances_results.json` in the `OUTPUT_DIR`.
+
+<br>
 
 ### Inference at Higher FPS
 You can also run trackers on TAO-Amodal at higher fps by including non-annotated frames into the annotation JSON.
@@ -122,6 +129,8 @@ You can also run trackers on TAO-Amodal at higher fps by including non-annotated
     ```
 
 This creates `path/to/5fps/lvis_instances_results_to_1fps.json` in your `OUTPUT_FOLDER`.
+
+<br>
 
 ### Evaluation
 After running the inference, you can evaluate the tracking results with the generated JSON (`lvis_instances_results.json`). Please refer to our [eval toolkit](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation) for further details.
