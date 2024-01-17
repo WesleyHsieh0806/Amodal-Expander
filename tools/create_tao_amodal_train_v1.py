@@ -88,6 +88,6 @@ if __name__ == '__main__':
         x['not_exhaustive_category_ids'] = video['not_exhaustive_category_ids']
 
 
-    save_path = tao_v05_path[:-5] + '_GTR_lvis_v1.json'
+    save_path = tao_v05_path[:-5] + '_lvis_v1.json'
     print('saving to', save_path)
     json.dump(data, open(save_path, 'w'))
