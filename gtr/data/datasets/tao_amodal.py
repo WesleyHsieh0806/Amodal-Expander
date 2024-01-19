@@ -181,7 +181,9 @@ for key, (image_root, json_file) in _PREDEFINED_SPLITS_TAO_Amodal.items():
 
 
 _PREDEFINED_SPLITS_TAO_AmodalV1 = {
+    # REGISTERED_DATASET_NAME: (IMAGE_DIR, ANNOTATION_JSON),
     "tao_amodal_val_v1": ("tao_amodal/frames/", "tao_amodal/amodal_annotations/validation_lvis_v1.json"),
+    
     # You can also register new datasets below: 
     # For example, you can run trackers at 5 fps by creating new annotation JSON and uncomment this line:
     # "tao_amodal_val_v1_5fps": ("tao_amodal/frames/", "tao_amodal/amodal_annotations/validation_lvis_v1_5fps.json"),
