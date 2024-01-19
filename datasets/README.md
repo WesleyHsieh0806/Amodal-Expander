@@ -113,7 +113,7 @@ TAO-Amodal **does not** need to be further preprocessed as all the files are alr
 To use customized dataset for training and inference:
 
 1. [Structure your dataset](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal#%F0%9F%93%9A-dataset-structure) and create [annotation JSON](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal#annotation-and-prediction-format) following the format of TAO-Amodal.
-    > The model will run on all the "videos" and "images" listed in your annotation JSON.
+    > For each video, the model will only run on the "images" listed in your annotation JSON.
 
 2. Create a python script `your_dataset.py` to register your dataset following our [provided example](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/gtr/data/datasets/tao_amodal.py#L185). 
     > You will need to customize `your_dataset.py` if the dataset does not share the same format with TAO-Amodal.
