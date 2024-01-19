@@ -106,15 +106,30 @@ TAO-Amodal **does not** need to be further preprocessed as all the files are alr
 
 - You can also check [MODEL_ZOO.md](../docs/MODEL_ZOO.md#inference-at-higher-fps) to create annotation JSON for running trackers at higher fps.
 
-## Customized Dataset
-1. To train/inference the model on your customized dataset, check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets). 
-2. Then, create a python script `your_dataset.py` to register your dataset following our [provided examples](../gtr/data/datasets/). 
+<br/>
 
-3. Finally, import the dataset script (such as `your_dataset.py`) in [__init\__.py](./gtr/__init__.py), which enables the dataset to be loaded during training:
+## Customized Dataset
+
+To use customized dataset for training and inference:
+
+1. [Structure your dataset](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal#%F0%9F%93%9A-dataset-structure) and create [annotation JSON](https://huggingface.co/datasets/chengyenhsieh/TAO-Amodal#annotation-and-prediction-format) following the format of TAO-Amodal.
+    > The model will run on all the "videos" and "images" listed in your annotation JSON.
+
+2. Create a python script `your_dataset.py` to register your dataset following our [provided example](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/gtr/data/datasets/tao_amodal.py#L185). 
+    > You will need to customize `your_dataset.py` if the dataset does not share the same format with TAO-Amodal.
+
+3. Import the dataset script (such as `your_dataset.py`) in [__init\__.py](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/gtr/__init__.py):
     ```python
     # Something like this
     from .data.datasets import your_dataset
     ```
+4. Set the value of `DATASETS.TRAIN` or `DATASETS.TEST` in the [config](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/configs/GTR_TAO_Amodal_Expander_PasteNOcclude.yaml#L79) to your registered dataset, and use this config for [training](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/docs/MODEL_ZOO.md#training)/[inference](https://github.com/WesleyHsieh0806/Amodal-Expander/blob/main/docs/MODEL_ZOO.md#inference).
+
+<br/>
+
+Check detectron2 [tutorial](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#use-custom-datasets) for details.
+
+<br/>
 
 ## COCO and LVIS
 
