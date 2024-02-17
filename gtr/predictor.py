@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import torch
+import matplotlib.colors as mplc
 
 from detectron2.data import MetadataCatalog
 from detectron2.engine.defaults import DefaultPredictor
@@ -8,6 +9,25 @@ from detectron2.utils.video_visualizer import VideoVisualizer, random_color
 from detectron2.utils.video_visualizer import _create_text_labels
 from detectron2.utils.visualizer import ColorMode, Visualizer
 
+class CustomVisualizer(Visualizer):
+    def __init__(self, img_rgb, metadata=None, scale=1.0, instance_mode=ColorMode.IMAGE):
+        """
+        Args:
+            img_rgb: a numpy array of shape (H, W, C), where H and W correspond to
+                the height and width of the image respectively. C is the number of
+                color channels. The image is required to be in RGB format since that
+                is a requirement of the Matplotlib library. The image is also expected
+                to be in the range [0, 255].
+            metadata (Metadata): dataset metadata (e.g. class names and colors)
+            instance_mode (ColorMode): defines one of the pre-defined style for drawing
+                instances on an image.
+        """
+        height, width, _ = img_rgb.shape
+        img = np.ones([height * 2, width * 2, 3], dtype=np.uint8) * 255
+        img[int(0.5 * height): int(0.5 * height) + height, 
+                int(0.5 * width): int(0.5 * width) + width] = img_rgb
+
+        super().__init__(img_rgb=img, metadata=metadata, scale=scale, instance_mode=instance_mode)
 
 class TrackingVisualizer(VideoVisualizer):
     def __init__(self, metadata, instance_mode=ColorMode.IMAGE):
@@ -31,7 +51,7 @@ class TrackingVisualizer(VideoVisualizer):
     def draw_instance_predictions(self, frame, predictions):
         """
         """
-        frame_visualizer = Visualizer(frame, self.metadata)
+        frame_visualizer = CustomVisualizer(frame, self.metadata)
         num_instances = len(predictions)
         if num_instances == 0:
             return frame_visualizer.output
@@ -49,8 +69,18 @@ class TrackingVisualizer(VideoVisualizer):
         colors = self._assign_colors_by_track_id(predictions)
         labels = _create_text_labels(
             classes, scores, self.metadata.get("thing_classes", None))
-        labels = ['({}){}'.format(x, y[:y.rfind(' ')]) \
+        labels = ['({}) {}'.format(x, y[:y.rfind(' ')]) \
             for x, y in zip(track_ids, labels)]
+        
+        if predictions.has("pred_boxes"):
+            height, width, _ = frame.shape
+            boxes[:, 0] += int(0.5 * width)
+            boxes[:, 2] += int(0.5 * width)
+            boxes[:, 1] += int(0.5 * height)
+            boxes[:, 3] += int(0.5 * height)
+
+        if predictions.has("pred_masks"):
+            raise ValueError('Amodal mask demo is not supported yet.')
 
         frame_visualizer.overlay_instances(
             boxes=None if masks is not None else boxes,  # boxes are a bit distracting

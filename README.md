@@ -32,6 +32,9 @@
       <a href="#bar_chart-evaluation">Evaluation</a>
     </li>
     <li>
+      <a href="#robot-demo">Demo</a>
+    </li>
+    <li>
       <a href="#rabbit2-pastenocclude">PasteNOcclude</a>
     </li>
     <li>
@@ -54,6 +57,26 @@ Please [prepare datasets](./datasets/README.md) and check our [MODEL ZOO](./docs
 
 ## :bar_chart: Evaluation
 After obtaining the prediction JSON `lvis_instances_results.json` through the above inference pipeline. You can evaluate the tracker results using our [evaluation toolkit](https://github.com/WesleyHsieh0806/TAO-Amodal?tab=readme-ov-file#bar_chart-evaluation).
+
+## :robot: Demo
+You can test our model on a single video through:
+```bash
+python demo.py \
+    --config-file configs/GTR_TAO_Amodal_Expander_PasteNOcclude.yaml \
+    --video-input /path/to/frame_folder/or/video.mp4 \
+    --output demo/output.mp4 \
+    --opts MODEL.WEIGHTS /path/to/Amodal_Expander_PnO_45k.pth
+```
+> Use `--input video_folder/*.jpg` instead if the video consists of image frames.
+
+For example
+```bash
+python demo.py \
+    --config-file configs/GTR_TAO_Amodal_Expander_PasteNOcclude.yaml \
+    --video-input demo/input_video.mp4 \
+    --output demo/output.mp4 \
+    --opts MODEL.WEIGHTS /data3/chengyeh/Amodal-Expander-public-checkpoints/Amodal_Expander_PnO_45k.pth
+```
 
 ## :rabbit2: PasteNOcclude
 PasteNOcclude serves as a data augmentation technique to automatically generate more occlusion scenarios. 

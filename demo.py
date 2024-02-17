@@ -154,7 +154,7 @@ if __name__ == "__main__":
                 # you can try other format (e.g. MPEG)
                 fourcc=cv2.VideoWriter_fourcc(*codec),
                 fps=float(frames_per_second),
-                frameSize=(width, height),
+                frameSize=(width*2, height*2),
                 isColor=True,
             )
         assert os.path.isfile(args.video_input)
