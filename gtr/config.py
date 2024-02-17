@@ -43,7 +43,7 @@ def add_gtr_config(cfg):
     _C.MODEL.AMODAL_EXPANDER.ONLY_LAST_STAGE = False  # Only Expand the modal predictions from the last stage 
     _C.MODEL.AMODAL_EXPANDER.ZERO_INIT = False  # If True, we use zero initialization for weights and biases in amodal expander
     _C.MODEL.AMODAL_EXPANDER.USE_TEMPORAL = False  # If True, we put proposal features across multiple frames into attention layer, which include temporal information from previous frames
-    _C.MODEL.AMODAL_EXPANDER.USE_TEMPORAL_FROM_TRACKER = False  # If True, we use the features from transformer, which include temporal information from previous frames
+    _C.MODEL.AMODAL_EXPANDER.USE_TEMPORAL_FROM_TRACKER = True  # If True, we use the features from transformer, which include temporal information from previous frames
     _C.MODEL.AMODAL_EXPANDER.USE_PROPOSAL_FEATURE = True  # If True, we use the region proposal feature as one part of the input to amodal expander
     _C.MODEL.AMODAL_EXPANDER.USE_MODAL_DELTA = True  # If True, we use the modal delta output by regression head as one part of the input to amodal expander
     
