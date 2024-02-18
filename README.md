@@ -62,9 +62,9 @@ After obtaining the prediction JSON `lvis_instances_results.json` through the ab
 You can test our model on a single video through:
 ```bash
 python demo.py --config-file configs/GTR_TAO_Amodal_Expander_PasteNOcclude.yaml \
-               --opts        MODEL.WEIGHTS /path/to/Amodal_Expander_PnO_45k.pth \
                --video-input demo/input_video.mp4 \
-               --output      demo/output.mp4 
+               --output      demo/output.mp4 \
+               --opts        MODEL.WEIGHTS /path/to/Amodal_Expander_PnO_45k.pth
 ```
 > Use `--input video_folder/*.jpg` instead if the video consists of image frames.
 
