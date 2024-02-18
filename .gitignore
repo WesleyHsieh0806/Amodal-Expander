@@ -60,3 +60,5 @@ _darcs
 /snippet
 !/tools/*.ipynb
 !demo.ipynb
+demo/input_video/
+third_party/
