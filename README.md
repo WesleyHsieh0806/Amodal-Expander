@@ -84,12 +84,10 @@ Check [here](https://github.com/xingyizhou/GTR?tab=readme-ov-file#license) for f
 
 ## Citations
 ``` bash
-@misc{hsieh2023tracking,
-    title={Tracking Any Object Amodally},
-    author={Cheng-Yen Hsieh and Tarasha Khurana and Achal Dave and Deva Ramanan},
-    year={2023},
-    eprint={2312.12433},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@article{hsieh2023tracking,
+  title={Tracking any object amodally},
+  author={Hsieh, Cheng-Yen and Khurana, Tarasha and Dave, Achal and Ramanan, Deva},
+  journal={arXiv preprint arXiv:2312.12433},
+  year={2023}
 }
 ```
